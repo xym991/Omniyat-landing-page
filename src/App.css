@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "OptimaLTPro";
+  src: url("./Assets/Fonts/OptimaLTPro-Roman.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Font 2 */
+@font-face {
+  font-family: "Graphic-Regular";
+  src: url("./Assets/Fonts/Graphik-Regular-Trial.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --font1: "Graphic-Regular";
+  --font2: "OptimaLTPro";
+  --black: black;
+  --light-grey-30: #f3f1ef;
+  --sky-blue: #98d2dd;
+  --rich-blue: #0a0a3d;
+  --sand: #dbc0a8;
+  --gold: #a18a6b;
+  --light-grey-70: #e2dfdb;
+  --white: white;
+  --footer-black: #1d1d1d;
+  --black-35-opacity: #00000059;
+  --pdp-nav-height: 144px;
+  --IOCubic: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font1);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,144 @@
+._header {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  position: fixed;
+  backdrop-filter: blur(20px);
+  background-color: #00000080;
+  z-index: 5;
+  width: 100%;
+  transition: height 0.6s var(--IOCubic);
+  height: 84px;
+}
+
+._header.open {
+  height: 100%;
+}
+._header .top {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  height: 84px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  filter: drop-shadow(0px 0px 12px #1118);
+}
+._header .logo {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+._header .nav-links {
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.6s var(--IOCubic);
+  color: white;
+  list-style: none;
+  margin: auto;
+  gap: 10vw;
+  font-family: var(--font2);
+  font-size: 2.25rem;
+  pointer-events: none;
+  z-index: 0;
+  filter: drop-shadow(0px 0px 12px #1118);
+}
+._header.open .nav-links {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 1;
+  cursor: pointer;
+}
+._header.open .nav-links li {
+  opacity: 90%;
+  transition: all 0.5s var(--IOCubic);
+}
+._header.open .nav-links li:hover {
+  transform: scale(1.06);
+  opacity: 1;
+}
+._header .menu {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+  transition: all 0.3s var(--IOCubic);
+  cursor: pointer;
+}
+
+._header .menu:hover > div {
+  margin: 5px 0;
+}
+._header .menu.open > div:first-child {
+  margin: 5px 0;
+  transform: rotate(45deg) translateY(8px);
+}
+._header .menu.open > div:last-child {
+  margin: 5px 0;
+  transform: rotate(-45deg) translateY(-8px);
+}
+._header .menu > div {
+  height: 0;
+  width: 20px;
+  margin: 3px 0;
+  border: 1px solid white;
+  transition: all 0.2s ease-in;
+  transform-origin: center center;
+}
+
+._header .contact-us {
+  font-family: var(--font2);
+  backdrop-filter: blur(50px);
+  color: var(--white);
+  text-align: center;
+  background-color: #0006;
+  padding: 0.625rem 1.625rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  position: relative;
+}
+
+._header .contact-us svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+}
+._header .contact-us:hover svg rect {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2500ms;
+  opacity: 1;
+}
+._header .contact-us svg rect {
+  stroke: var(--white);
+  stroke-width: 4;
+
+  stroke-dasharray: 480;
+  stroke-dashoffset: 480;
+  opacity: 0;
+  z-index: 2;
+}
+._header .contact-us svg,
+._header .contact-us svg rect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+}
