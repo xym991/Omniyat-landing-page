@@ -36,8 +36,24 @@ body {
   font-family: var(--font1);
   margin: 0;
   padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
+}
+._App {
+  /*
+  height: 100vh; 
+  width: 100%; 
+  scroll-snap-type: y proximity;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; 
+  margin: 0;
+  padding: 0;
+
+  */
 }

@@ -1,0 +1,83 @@
+._carousel {
+  display: flex;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  margin: 6rem;
+  transition: all 0.5s var(--IOCubic);
+  height: 100vh; /* Each section takes up a full screen height */
+  scroll-snap-align: center;
+  min-height: 100vh;
+}
+._carousel.focus {
+  margin: 6rem 0;
+}
+._carousel .carousel-item {
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s var(--IOCubic);
+  flex-direction: column;
+  color: white;
+}
+._carousel .carousel-item > img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+
+  left: 0;
+  vertical-align: middle;
+}
+._carousel .carousel-item .main h2,
+._carousel .carousel-item .main div {
+  z-index: 1;
+  font-family: var(--font2);
+  max-width: 860px;
+}
+
+._carousel .carousel-item .main {
+  opacity: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  background-image: linear-gradient(180deg, transparent, #1119);
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0px 0px 20px #1118);
+  transition: all 0.5s var(--IOCubic);
+}
+._carousel.focus .carousel-item .main {
+  opacity: 1;
+}
+._carousel .carousel-item .main .svg-btn {
+  width: 220px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-item h2 {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 105%;
+  text-transform: uppercase;
+  text-align: center;
+}

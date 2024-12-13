@@ -1,14 +1,15 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./Components/Header";
 import Home from "./Slides/Home";
+import Carousel from "./Slides/Carousel";
+import carouselData from "./utils/carouselData";
 
 function App() {
   return (
-    <div className="App">
+    <div className="_App">
       <Router>
-        <Header />
         <Home></Home>
+        <Carousel items={carouselData}></Carousel>
       </Router>
     </div>
   );

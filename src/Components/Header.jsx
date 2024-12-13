@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
+import SVGButton from "./SVGButton";
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
+const Header = ({ open, setOpen, scrolled }) => {
   return (
-    <nav className={"_header" + (open ? " open" : "")}>
+    <nav
+      className={"_header" + (open ? " open" : "") + (scrolled ? " sc" : "")}
+    >
       <div className="top">
         <button
           className={"menu" + (open ? " open" : "")}
@@ -17,14 +19,17 @@ const Header = () => {
           <img
             src="https://cdn.prod.website-files.com/64cd0df1806781d956403b26/64d0f5a02c9c892bbd0bd804_omniyat-logo.svg"
             alt=""
+            loading="lazy"
+            className="full"
           />
+          <img
+            src="https://cdn.prod.website-files.com/64cd0df1806781d956403b26/64d36c24ac73440c5d71e180_omniyat-logo-icon.svg"
+            loading="lazy"
+            alt="Omniyat"
+            className="mini"
+          ></img>
         </a>
-        <a href="" className="contact-us">
-          <div>Contact Us</div>
-          <svg class="btn">
-            <rect width="100%" height="100%"></rect>
-          </svg>
-        </a>
+        <SVGButton href={""}>Contact Us</SVGButton>
       </div>
       <ul className="nav-links">
         <li>Home</li>

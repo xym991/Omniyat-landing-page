@@ -4,6 +4,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.6s var(--IOCubic);
+  min-height: 100vh;
+  position: relative;
+  scroll-snap-align: center;
+}
+._home.white {
+  background-color: white;
+}
+._home.white * {
+  color: black !important;
+  filter: none !important;
+}
+._home.white .main h2,
+._home.white .main div {
+  transition: color 0.6s var(--IOCubic);
 }
 ._home .home-bg-video {
   object-fit: cover;
@@ -11,7 +26,7 @@
   background-position: 50%;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   position: absolute;
   inset: -100%;
@@ -22,26 +37,78 @@
 ._home .main {
   color: white;
   text-align: center;
-  filter: drop-shadow(0px 0px 16px #1118);
+
+  position: relative;
+}
+._home .main .logo {
+  width: 36vw;
+  position: absolute;
+  min-width: 300px;
+  top: 50%;
+  left: 50%;
+  min-height: 60px;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0px 0px 20px #1118);
+  animation: logo-home 6s forwards;
+}
+@keyframes logo-home {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes main-home {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: none;
+  }
+  80% {
+    opacity: 1;
+    filter: drop-shadow(0px 0px 20px #1118);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 ._home .main h2 {
   text-transform: uppercase;
   font-family: var(--font2);
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 400;
   line-height: 1.05em;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin-top: 0;
   margin-bottom: 0.75rem;
+  animation: main-home 1.5s 6.5s forwards ease-out;
+  transform: translateY(24px);
+  opacity: 0;
+  transition: all 0.6s var(--IOCubic);
 }
 
 ._home .main div {
   text-align: center;
-  max-width: 600px;
+  letter-spacing: 0.075rem;
+  opacity: 0;
+  max-width: 860px;
   margin-bottom: 3rem;
-
+  transform: translateY(20px);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75em;
+  animation: main-home 1.5s 6.5s forwards ease-out;
+  transition: all 0.6s var(--IOCubic);
 }

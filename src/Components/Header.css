@@ -7,15 +7,19 @@
   display: flex;
   position: fixed;
   backdrop-filter: blur(20px);
-  background-color: #00000080;
+  background-color: #00000070;
   z-index: 5;
   width: 100%;
-  transition: height 0.6s var(--IOCubic);
+  transition: all 0.6s var(--IOCubic);
   height: 84px;
+  opacity: 0;
+  animation: init-header 1s 6.5s forwards;
 }
 
 ._header.open {
-  height: 100%;
+  height: 100% !important;
+  backdrop-filter: blur(36px);
+  background-color: #00000080;
 }
 ._header .top {
   width: 100%;
@@ -28,13 +32,43 @@
   top: 0;
   padding-left: 4rem;
   padding-right: 4rem;
+  transition: height 0.6s var(--IOCubic);
   filter: drop-shadow(0px 0px 12px #1118);
 }
+._header.sc,
+._header.sc .top {
+  height: 60px;
+}
+
 ._header .logo {
   margin: auto;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+._header .logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.6s var(--IOCubic);
+}
+._header .logo .full {
+  transition-delay: 0.6s;
+  opacity: 1;
+}
+._header .logo .mini {
+  opacity: 0;
+  transition-delay: 0s;
+}
+._header.sc .logo .full {
+  transition-delay: 0s;
+  opacity: 0;
+}
+._header.sc .logo .mini {
+  opacity: 1;
+
+  transition-delay: 0.6s;
 }
 
 ._header .nav-links {
@@ -95,7 +129,7 @@
   transform-origin: center center;
 }
 
-._header .contact-us {
+.svg-btn {
   font-family: var(--font2);
   backdrop-filter: blur(50px);
   color: var(--white);
@@ -111,7 +145,7 @@
   position: relative;
 }
 
-._header .contact-us svg {
+.svg-btn svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -119,26 +153,39 @@
   height: 100%;
   fill: transparent;
 }
-._header .contact-us:hover svg rect {
+.svg-btn:hover svg rect {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 2500ms;
   opacity: 1;
 }
-._header .contact-us svg rect {
+.svg-btn svg rect {
   stroke: var(--white);
   stroke-width: 4;
 
-  stroke-dasharray: 480;
-  stroke-dashoffset: 480;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
   opacity: 0;
   z-index: 2;
 }
-._header .contact-us svg,
-._header .contact-us svg rect {
+.svg-btn svg,
+.svg-btn svg rect {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   fill: transparent;
+}
+@keyframes init-header {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  80% {
+    /* opacity: 1; */
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+  }
 }
