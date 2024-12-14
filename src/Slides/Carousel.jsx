@@ -67,8 +67,53 @@ const Carousel = ({ items }) => {
       ))}
       <div className="slides">
         {items?.map((item, index) => (
-          <div key={index} className="carousel-slide"></div>
+          <div
+            key={index}
+            className={"carousel-slide" + (slide == index ? " active" : "")}
+          ></div>
         ))}
+      </div>
+      <div className="buttons">
+        <button
+          className="left"
+          style={{ opacity: slide > 0 ? "100%" : "50%" }}
+          onClick={(_) => slide > 0 && setSlide(slide - 1)}
+        >
+          <svg
+            width="27"
+            height="11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M26.667 4.74 2.53 4.76 6.592.891 5.658 0 .001 5.392l5.533 5.274.934-.89-3.94-3.755 24.14-.022-.001-1.26Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </button>
+        <button
+          className="right"
+          onClick={(_) => slide < items.length - 1 && setSlide(slide + 1)}
+          style={{ opacity: slide < items.length - 1 ? "100%" : "50%" }}
+        >
+          <span aria-label="Next" role="button">
+            <svg
+              width="28"
+              height="11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="m.67 4.74 24.135.021-4.061-3.87.933-.891 5.658 5.392-5.533 5.274-.934-.89 3.94-3.755-24.14-.022.001-1.26Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   );

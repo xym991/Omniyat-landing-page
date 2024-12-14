@@ -80,7 +80,7 @@
   margin: auto;
   gap: 10vw;
   font-family: var(--font2);
-  font-size: 2.25rem;
+  font-size: 2.2rem;
   pointer-events: none;
   z-index: 0;
   filter: drop-shadow(0px 0px 12px #1118);
@@ -92,11 +92,13 @@
   cursor: pointer;
 }
 ._header.open .nav-links li {
-  opacity: 90%;
+  opacity: 85%;
   transition: all 0.5s var(--IOCubic);
+  text-transform: uppercase;
+  font-weight: 400;
 }
 ._header.open .nav-links li:hover {
-  transform: scale(1.06);
+  transform: scale(1.1);
   opacity: 1;
 }
 ._header .menu {
@@ -143,6 +145,7 @@
   transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955),
     background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   position: relative;
+  cursor: pointer;
 }
 
 .svg-btn svg {
@@ -154,8 +157,9 @@
   fill: transparent;
 }
 .svg-btn:hover svg rect {
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 2500ms;
+  stroke-dashoffset: 0 !important;
+  transition: stroke-dashoffset 2.5s, opacity 0.6s;
+
   opacity: 1;
 }
 .svg-btn svg rect {
@@ -164,6 +168,7 @@
 
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
+  transition: stroke-dashoffset 0.6s 2.5s, opacity 0.6s;
   opacity: 0;
   z-index: 2;
 }
