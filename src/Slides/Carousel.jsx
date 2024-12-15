@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import SVGButton from "../Components/SVGButton";
 import "./Carousel.css";
 import throttle from "../utils/throttle";
+import Slides from "../Components/Slides";
 
 const Carousel = ({ items }) => {
   const carouselRef = useRef(null);
@@ -65,14 +66,7 @@ const Carousel = ({ items }) => {
           </div>
         </div>
       ))}
-      <div className="slides">
-        {items?.map((item, index) => (
-          <div
-            key={index}
-            className={"carousel-slide" + (slide == index ? " active" : "")}
-          ></div>
-        ))}
-      </div>
+      <Slides num={items.length} slide={slide} />
       <div className="buttons">
         <button
           className="left"

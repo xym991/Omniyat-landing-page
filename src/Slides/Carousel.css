@@ -8,6 +8,7 @@
   height: 100vh; /* Each section takes up a full screen height */
   scroll-snap-align: center;
   min-height: 100vh;
+  scroll-snap-align: start;
 }
 ._carousel.focus {
   margin: 0;
@@ -88,7 +89,7 @@
   margin-top: 6rem;
 }
 
-._carousel .slides {
+.slides {
   position: absolute;
   display: flex;
   align-items: center;
@@ -98,17 +99,22 @@
   transform: translateX(-50%);
   z-index: 1;
 }
-._carousel .slides .carousel-slide {
+.slides .carousel-slide {
   width: 80px;
   height: 1px;
   opacity: 50%;
   background-color: white;
   cursor: pointer;
+  border-radius: 2px;
 }
 
-._carousel .slides .carousel-slide.active {
+.slides .carousel-slide.active {
   opacity: 100%;
   border: 1px solid white;
+}
+.slides.black .carousel-slide {
+  background-color: black !important;
+  border-color: black !important;
 }
 
 ._carousel .buttons {

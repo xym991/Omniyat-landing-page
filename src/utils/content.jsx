@@ -1,3 +1,4 @@
+import partner1 from "../Assets/images/partners-1.webp";
 export const carouselHome = [
   {
     image: (
@@ -134,9 +135,8 @@ export const homeCards = [
       <img
         alt=""
         loading="lazy"
-        src="https://cdn.prod.website-files.com/64d10d152d5483b843123d85/656f0e20b157c6458357552c_Partners-07-d.webp"
+        src={partner1}
         sizes="100vw"
-        srcSet="https://cdn.prod.website-files.com/64d10d152d5483b843123d85/656f0e20b157c6458357552c_Partners-07-d-p-500.webp 500w, https://cdn.prod.website-files.com/64d10d152d5483b843123d85/656f0e20b157c6458357552c_Partners-07-d-p-800.webp 800w, https://cdn.prod.website-files.com/64d10d152d5483b843123d85/656f0e20b157c6458357552c_Partners-07-d.webp 960w"
         className="gallery-image hide-mobile"
       ></img>
     ),

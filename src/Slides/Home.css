@@ -7,7 +7,7 @@
   transition: 0.6s var(--IOCubic);
   min-height: 100vh;
   position: relative;
-  /* scroll-snap-align: center; */
+  scroll-snap-align: start;
 }
 ._home.white {
   background-color: white;

@@ -1,80 +1,87 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CardsGallery.css";
 import throttle from "../utils/throttle";
+import Slides from "../Components/Slides";
+
 const CardsGallery = ({ items }) => {
-  const [cards, setCards] = useState(items);
-  const containerRef = useRef(null);
-  const nextRef = useRef(null);
+  // const [cards, setCards] = useState([...items]);
   const [current, setCurrent] = useState(0);
-  const prevRef = useRef(null);
+  const container = useRef();
 
-  //   const scrollToChild = (ref, fn) => {
-  //     if (!ref.current) return;
-  //     const parent = containerRef.current;
-  //     const child = ref.current;
+  const handleWheel = (e) => {
+    if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
 
-  //     const parentLeft = parent.getBoundingClientRect().left;
-  //     const childLeft = child.getBoundingClientRect().left;
-  //     const distanceFromParentLeft = childLeft - parentLeft;
+    if (e.deltaX > 0) {
+      setCurrent((current) => (current + 1 == items.length ? 0 : current + 1));
+      Array.from(container?.current?.childNodes).forEach((element, i) => {
+        element.style.transform = `translateX(${element.number - 616}px)`;
+        element.number = element.number - 616;
+      });
+      setTimeout(() => {
+        let element = container.current?.childNodes[0];
+        element.remove();
+        element.style.transform = `translateX(${(items.length - 2) * 616}px)`;
+        element.number = (items.length - 2) * 616;
+        container.current.appendChild(element);
+      }, 400);
+    } else if (e.deltaX < 0) {
+      setCurrent((current) =>
+        current - 1 == -1 ? items.length - 1 : current - 1
+      );
+      Array.from(container?.current?.childNodes).forEach((element, i) => {
+        element.style.transform = `translateX(${element.number + 616}px)`;
+        element.number = element.number + 616;
+      });
+      setTimeout(() => {
+        let element = container.current?.childNodes[items.length - 1];
+        element.remove();
+        element.style.transform = `translateX(${-616}px)`;
+        element.number = -616;
+        container.current.prepend(element);
+      }, 400);
+    }
+  };
+  const throttledFn = throttle(handleWheel, 500);
+  useEffect(() => {
+    const carouselElement = container.current;
 
-  //     parent.scrollTo({
-  //       left: distanceFromParentLeft + parent.scrollLeft,
-  //       behavior: "smooth",
-  //     });
-  //     setTimeout(() => {
-  //       //   let arr = [...cards.slice(1)];
-  //       //   arr.push(cards[0]);
-  //       //   setCards(arr);
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      if (Math.abs(e.deltaX) < 40) return;
 
-  //       //   //   cards.push(item);
-  //       fn();
-  //     }, 1000);
-  //   };
-  //   const throttledScroll = throttle(scrollToChild, 1000);
+      throttledFn(e);
+    };
 
-  //   useEffect(() => {
-  //     containerRef.current?.addEventListener(
-  //       "wheel",
-  //       (event) => {
-  //         // Prevent default behavior
-  //         event.preventDefault();
-  //         // Make sure the wheel event is horizontal
+    carouselElement.addEventListener("wheel", onWheel, { passive: false });
+    return () => carouselElement.removeEventListener("wheel", onWheel);
+  }, []);
 
-  //         if (event.deltaX > 0) {
-  //           throttledScroll(nextRef, () => {
-  //             setCurrent(current + 1);
-  //           });
+  function assignPositions() {
+    Array.from(container?.current?.childNodes).forEach((element, i) => {
+      let number = (i - 1) * 616;
+      element.number = number;
+      element.style.transform = `translateX(${(i - 1) * 616}px)`;
+    });
+  }
+  useEffect(() => assignPositions(), []);
 
-  //           //   carouselRef.current.scrollLeft += 100;
-  //         } else {
-  //           throttledScroll(prevRef, () => {
-  //             setCurrent(current + 1);
-  //           });
-
-  //           //   carouselRef.current.scrollLeft -= 100;
-  //         }
-  //       },
-  //       { passive: false }
-  //     );
-  //     return () => {
-  //       containerRef.current?.removeEventListener("wheel", () => {});
-  //     };
-  //   }, [containerRef]);
   return (
     <div className="_cards-gallery">
-      <div className="cards" ref={containerRef}>
-        {" "}
-        {cards.map((item, i) => (
+      <div className="cards" ref={container}>
+        {items.map((item, i) => (
           <div
             className="card"
             id={"card" + i}
-            ref={i == current - 1 ? prevRef : i == current + 1 ? nextRef : null}
+            key={i}
+            // style={{ transform: `translateX(${i * 616}px)` }}
           >
             {item.image}
             <h2>{item.name}</h2>
           </div>
         ))}
       </div>
+      <Slides num={items.length} slide={current} black />
     </div>
   );
 };
