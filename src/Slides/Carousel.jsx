@@ -4,10 +4,9 @@ import "./Carousel.css";
 import throttle from "../utils/throttle";
 import Slides from "../Components/Slides";
 
-const Carousel = ({ items }) => {
+const Carousel = ({ items, button = true }) => {
   const carouselRef = useRef(null);
   const [slide, setSlide] = useState(0);
-  const [lock, setLock] = useState(false);
 
   const handleWheel = (e) => {
     if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
@@ -44,15 +43,19 @@ const Carousel = ({ items }) => {
     return () => carouselElement.removeEventListener("wheel", onWheel);
   }, []);
   useEffect(() => {
-    document.addEventListener("scroll", (e) => {
+    document.querySelector("._App").addEventListener("wheel", (e) => {
       let rect = carouselRef.current.getBoundingClientRect();
-      if (rect.top <= 90) carouselRef.current.classList.add("focus");
-      else carouselRef.current.classList.remove("focus");
+
+      if (rect.top < 300) {
+        carouselRef.current.classList.add("focus");
+      } else {
+        carouselRef.current.classList.remove("focus");
+      }
     });
-  });
+  }, []);
 
   return (
-    <div className="_carousel" ref={carouselRef}>
+    <div className="_carousel stop" ref={carouselRef}>
       {items?.map((item, index) => (
         <div
           key={index}
@@ -62,7 +65,7 @@ const Carousel = ({ items }) => {
           {item.image}
           <div className="main">
             <h2>{item?.content}</h2>
-            <SVGButton>Discover</SVGButton>
+            {button && <SVGButton>Discover</SVGButton>}
           </div>
         </div>
       ))}

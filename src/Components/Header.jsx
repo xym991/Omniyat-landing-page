@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Header.css";
 import SVGButton from "./SVGButton";
+import { useLocation } from "react-router";
 
-const Header = ({ open, setOpen, scrolled }) => {
+const Header = () => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+  const path = useLocation().pathname;
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    let fn = (e) => {
+      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      if (e.deltaY > 0) {
+        setScrolled(true);
+      } else if (e.deltaY < 0) {
+        setScrolled(false);
+      }
+    };
+    document.querySelector("._App")?.addEventListener("wheel", fn);
+    return () =>
+      document.querySelector("._App")?.removeEventListener("wheel", fn);
+  }, []);
   return (
     <nav
-      className={"_header" + (open ? " open" : "") + (scrolled ? " sc" : "")}
+      className={
+        "_header" +
+        (open ? " open" : "") +
+        (scrolled ? " sc" : "") +
+        (path != "" ? " fast" : "")
+      }
+      ref={ref}
+      s
     >
       <div className="top">
         <button
@@ -32,10 +57,18 @@ const Header = ({ open, setOpen, scrolled }) => {
         <SVGButton href={""}>Contact Us</SVGButton>
       </div>
       <ul className="nav-links">
-        <li>Home</li>
-        <li>Masterpieces</li>
-        <li>Our Story</li>
-        <li>Sales Gallery</li>
+        <a href="/">
+          <li>Home</li>
+        </a>
+        <a href="/masterpieces">
+          <li>Masterpieces</li>
+        </a>
+        <a href="our-story">
+          <li>Our Story</li>
+        </a>
+        <a href="sales">
+          <li>Sales Gallery</li>
+        </a>
       </ul>
     </nav>
   );

@@ -5,6 +5,13 @@
   flex-direction: column;
   padding: 12rem;
 }
+._masterpieces .main,
+._masterpieces main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 ._masterpieces h3,
 ._masterpieces h1 {
   text-transform: uppercase;
@@ -25,9 +32,13 @@
   color: black;
 }
 ._masterpieces p {
-  max-width: 720px;
+  max-width: 800px;
   text-align: center;
   margin: 0;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.04rem;
   line-height: 1.5rem;
+}
+._masterpieces.h-full {
+  height: 100vh;
+  padding-bottom: 0;
 }

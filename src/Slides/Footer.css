@@ -1,0 +1,124 @@
+._footer {
+  height: 100vh;
+  padding: 4rem 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: #1d1d1d;
+  color: white;
+}
+
+._footer .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+  min-height: 50vh !important;
+}
+._footer .top * {
+  margin: 0;
+}
+
+._footer .top video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  object-fit: cover;
+}
+
+._footer .top .main {
+  height: 100%;
+  padding-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  filter: drop-shadow(0px 0px 24px #1118);
+}
+._footer .top .mask {
+  background-color: #00205c;
+  inset: 0%;
+  mix-blend-mode: soft-light;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+._footer .top h2 {
+  font-family: var(--font2);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 3rem;
+  font-weight: 400;
+}
+._footer .top p {
+  font-size: 0.9rem;
+  letter-spacing: 0.03rem;
+  margin-bottom: 2rem;
+}
+._footer .mid img {
+  width: 20vw;
+  margin: 4rem auto 4rem;
+  min-width: 200px;
+}
+._footer .bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* padding: 0 4rem; */
+}
+._footer .bottom h3 {
+  text-transform: uppercase;
+  font-family: var(--font2);
+  font-weight: 400;
+  font-size: 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+._footer .bottom ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+._footer .bottom ul li {
+  opacity: 85%;
+  transition: all 0.3s var(--IOCubic);
+}
+._footer .bottom ul li:hover {
+  opacity: 100%;
+  /* transform: scale(1.05); */
+}
+._footer .bottom ul.socials {
+  gap: 1rem;
+}
+._footer .bottom ul.socials li {
+  height: 42px;
+  width: 42px;
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 8px #fff3;
+  cursor: pointer;
+}

@@ -15,6 +15,9 @@
   opacity: 0;
   animation: init-header 1s 6.5s forwards;
 }
+._header.fast {
+  animation: init-header 1s forwards;
+}
 
 ._header.open {
   height: 100% !important;
@@ -78,12 +81,15 @@
   color: white;
   list-style: none;
   margin: auto;
-  gap: 10vw;
-  font-family: var(--font2);
+  font-family: var(--font2) !important;
   font-size: 2.2rem;
   pointer-events: none;
   z-index: 0;
   filter: drop-shadow(0px 0px 12px #1118);
+  width: 75%;
+  justify-content: space-between;
+  text-transform: uppercase;
+  min-width: 900px;
 }
 ._header.open .nav-links {
   opacity: 1;
@@ -94,7 +100,7 @@
 ._header.open .nav-links li {
   opacity: 85%;
   transition: all 0.5s var(--IOCubic);
-  text-transform: uppercase;
+
   font-weight: 400;
 }
 ._header.open .nav-links li:hover {
@@ -137,7 +143,7 @@
   color: var(--white);
   text-align: center;
   background-color: #0006;
-  padding: 0.625rem 1.625rem 0.5rem;
+  /* padding: 0.625rem 1.625rem 0.5rem; */
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
@@ -146,8 +152,12 @@
     background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   position: relative;
   cursor: pointer;
+  min-width: fit-content;
+  padding: 0.625rem 2rem 0.5rem;
 }
-
+.svg-btn.long {
+  width: 300px;
+}
 .svg-btn svg {
   position: absolute;
   top: 0;
@@ -162,6 +172,7 @@
 
   opacity: 1;
 }
+
 .svg-btn svg rect {
   stroke: var(--white);
   stroke-width: 4;
@@ -172,6 +183,10 @@
   opacity: 0;
   z-index: 2;
 }
+.svg-btn.long rect {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
 .svg-btn svg,
 .svg-btn svg rect {
   position: absolute;
@@ -180,6 +195,14 @@
   width: 100%;
   height: 100%;
   fill: transparent;
+}
+
+.svg-btn.white {
+  background-color: #ddd;
+  color: black;
+}
+.svg-btn.white svg rect {
+  stroke: black;
 }
 @keyframes init-header {
   0% {
@@ -193,4 +216,8 @@
   100% {
     opacity: 1;
   }
+}
+a {
+  color: unset;
+  text-decoration: none;
 }

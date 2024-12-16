@@ -1,0 +1,65 @@
+._story-cards {
+  padding: 6rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  background-color: #f3f1ef;
+}
+._story-cards .cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 0px 4px #1112);
+}
+._story-cards .cards .card {
+  min-width: 320px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 340px;
+  flex-wrap: wrap;
+  max-width: calc(50% - 1rem);
+  background-color: white;
+}
+._story-cards .cards .card img {
+  height: 100%;
+  object-fit: cover;
+  width: 50%;
+}
+._story-cards .cards .card * {
+  margin: 0;
+}
+
+._story-cards .cards .card > div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  height: 100%;
+  justify-content: space-between;
+}
+
+._story-cards h4 {
+  margin: 4rem 0 0;
+  max-width: 1000px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: var(--font2);
+  letter-spacing: 0.05rem;
+  font-weight: 400;
+}
+._story-cards .card h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: var(--font2);
+}
+._story-cards .card p {
+  color: #444;
+  font-size: 1rem;
+}

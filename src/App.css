@@ -20,7 +20,7 @@
   --sky-blue: #98d2dd;
   --rich-blue: #0a0a3d;
   --sand: #dbc0a8;
-  --gold: #a18a6b;
+  --gold: #e19a18;
   --light-grey-70: #e2dfdb;
   --white: white;
   --footer-black: #1d1d1d;
@@ -39,26 +39,41 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+
   /* scroll-snap-type: y proximity; */
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
 a {
   text-decoration: none;
 }
 ._App {
-  /*
-
-  width: 100%; 
-
-
-  margin: 0;
-  padding: 0;
-
-  */
-  /* height: 100vh;
-  scroll-snap-type: mandatory;
+  scroll-snap-type: y mandatory;
+  height: 100vh;
   overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; */
-  /* scroll-snap-type: y proximity; */
+  width: 100vw;
+}
+
+._App > div {
+  scroll-snap-align: center;
+}
+._App::-webkit-scrollbar {
+  display: none;
+}
+.hide {
+  opacity: 0 !important;
+  transform: translateY(20px);
+  transition: all 0.9s var(--IOCubic);
+}
+.force-show .hide,
+.force-show.hide {
+  opacity: 1 !important;
+  transform: translateY(0px);
 }

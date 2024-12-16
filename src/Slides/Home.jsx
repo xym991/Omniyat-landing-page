@@ -1,63 +1,61 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
-import Header from "../Components/Header";
-import throttle from "../utils/throttle";
 
 const Home = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(0);
+  const [init, setInit] = useState(false);
   const [open, setOpen] = useState(false);
   const ref = useRef();
   const videoRef = useRef();
-  const handleScroll = (dir) => {
-    if (dir == "down") {
-      setTimeout(() => {
-        setScrolled(true);
-        videoRef.current?.pause();
-      }, 300);
-      ref.current?.classList?.add("white");
-    } else if (dir == "up" && window.scrollY < 100) {
-      console.log(window.scrollY);
-      setTimeout(() => {
-        setScrolled(false);
-        videoRef.current?.play();
-      }, 300);
-      ref.current?.classList?.remove("white");
-    }
-  };
 
-  const throttledHandleScroll = throttle(handleScroll, 500);
   useEffect(() => {
-    const scrollListener = (e) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      if (e.deltaY > 0) {
-        if (!scrolled) {
-          e.preventDefault();
-          throttledHandleScroll("down");
-        }
-      } else if (e.deltaY < 0) {
-        if (scrolled) {
-          throttledHandleScroll("up");
-        }
+    let app = document.querySelector("._App");
+    let slide = document.querySelector("._home");
+    let fn = (e) => {
+      if (!init) return e.preventDefault();
+
+      if (e.deltaY > 0 && scrolled < slide.getBoundingClientRect().height) {
+        e.preventDefault();
+        setScrolled((scrolled) =>
+          Math.min(
+            scrolled + Math.max(e.deltaY, 10),
+            slide.getBoundingClientRect().height
+          )
+        );
+      } else if (e.deltaY < 0 && slide.getBoundingClientRect().top == 0) {
+        setScrolled((scrolled) =>
+          Math.max(scrolled + Math.min(e.deltaY, -10), 0)
+        );
       }
     };
-    window.addEventListener("wheel", scrollListener, { passive: false });
-    return () =>
-      window.removeEventListener("wheel", scrollListener, { passive: false });
-  }, [scrolled]);
+    app?.addEventListener("wheel", fn);
+    return () => app?.removeEventListener("wheel", fn);
+  }, [scrolled, init]);
+
+  useEffect(() => setTimeout(() => setInit(true), 6000), []);
   return (
     <>
-      <Header open={open} setOpen={setOpen} scrolled={scrolled}></Header>{" "}
-      <div className="_home" ref={ref}>
+      <div className="_home stop" ref={ref}>
         <div className="main">
           <img
             className="logo"
             src="https://cdn.prod.website-files.com/64cd0df1806781d956403b26/64d0f5a02c9c892bbd0bd804_omniyat-logo.svg"
             alt=""
           />
-          <h2 className="hero_intro_heading heading-style-h3">
+          <h2
+            className="hero_intro_heading heading-style-h3"
+            style={{
+              color: scrolled > window.innerHeight / 2.1 ? "black" : "white",
+            }}
+          >
             THE ART OF ELEVATION
           </h2>
-          <div className="hero_intro_text text-size-large">
+          <div
+            className="hero_intro_text text-size-large"
+            style={{
+              color: scrolled > window.innerHeight / 2.1 ? "black" : "white",
+            }}
+          >
             A vision that transcends property and space, where unmatched
             craftsmanship inspires elegance and innovation to enrich lives.
             Imagining the extraordinary and building it into reality.
@@ -86,6 +84,17 @@ const Home = () => {
             data-wf-ignore="true"
           />
         </video>
+        <div
+          className="mask"
+          style={{
+            borderWidth: `${scrolled * 2.3}px`,
+            opacity: `${(scrolled / window.innerHeight) * 110}%`,
+            transform: `scaleY(${Math.max(
+              window.innerHeight / Math.max(scrolled * 1.3, 500),
+              1
+            )})`,
+          }}
+        ></div>
       </div>
     </>
   );

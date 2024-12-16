@@ -9,13 +9,20 @@
   position: relative;
   scroll-snap-align: start;
 }
-._home.white {
-  background-color: white;
+._home .mask {
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  bottom: 0;
+  left: calc(100% - 500);
+
+  transform-origin: center;
+
+  border: 0px solid transparent;
+
+  border-bottom-color: white;
 }
-._home.white * {
-  color: black !important;
-  filter: none !important;
-}
+
 ._home.white .main h2,
 ._home.white .main div {
   transition: color 0.6s var(--IOCubic);
@@ -34,9 +41,18 @@
   display: block;
 }
 
+._home > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 ._home .main {
   color: white;
   text-align: center;
+  z-index: 2;
 
   position: relative;
 }
@@ -98,17 +114,36 @@
   opacity: 0;
   transition: all 0.6s var(--IOCubic);
 }
+._home .main h2.rush {
+  animation: main-home 1.5s forwards ease-out;
+}
 
 ._home .main div {
   text-align: center;
   letter-spacing: 0.075rem;
   opacity: 0;
   max-width: 860px;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   transform: translateY(20px);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75em;
   animation: main-home 1.5s 6.5s forwards ease-out;
   transition: all 0.6s var(--IOCubic);
+}
+.permanent {
+  opacity: 1 !important;
+  position: static !important;
+  margin: auto;
+  margin-top: 20px;
+  transform: none !important;
+  width: unset !important;
+}
+._home .main h3 {
+  font-family: var(--font2);
+  font-weight: 400;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin: 40px;
 }

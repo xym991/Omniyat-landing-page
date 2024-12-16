@@ -1,0 +1,47 @@
+._story {
+  padding: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 160px;
+  flex-direction: column;
+}
+._story * {
+  margin: 0;
+}
+._story .items {
+  display: flex;
+  width: 940px;
+  margin: auto;
+  justify-content: space-between;
+}
+._story .items .item {
+  display: flex;
+  gap: 1rem;
+}
+._story .items .item > div {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+._story .items .item > div h2 {
+  font-family: var(--font2);
+  font-size: 4.2rem;
+  color: var(--gold);
+  font-weight: 400;
+}
+._story .items .item > div p {
+  color: #555;
+  text-align: left;
+}
+._story .items .item > hr {
+  opacity: 0.6;
+}
+
+._story .svg-btn {
+  width: 300px;
+}
+._story .svg-btn rect {
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+}
